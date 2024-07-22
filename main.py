@@ -20,6 +20,8 @@ def main():
     with sqlite3.connect("test.sqlite3") as conn:
         table.Table.conn = conn
 
+        logger.info("started work")
+
         cr_table = car_table.CarTable()
         crp_table = car_photo_table.CarPhotoTable()
 
