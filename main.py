@@ -29,9 +29,17 @@ def main():
         mercs = car_table.Car(2, "Mercedes", "S")
         skoda = car_table.Car(3, "Skoda", "Ocravia")
 
-        crp_table.create(daewoo)
-        crp_table.create(merc)
-        crp_table.create(skoda)
+        cr_table.create(daewoo)
+        cr_table.create(mercs)
+        cr_table.create(skoda)
+
+        my_car_photo = car_photo_table.CarPhoto(1, "https://cdn2.riastatic.com/photosnew/auto/photo/daewoo_lanos__542790792s.jpg", 1)
+
+        crp_table.create(my_car_photo)
+
+        logger.debug(cr_table.get_all())
+        logger.debug(crp_table.get_all())
+
 
 if __name__ == "__main__":
     main()

@@ -20,3 +20,15 @@ class CarPhotoTable(table.Table):
                 "FOREIGN KEY(car_id_fn) REFERENCES cars(id)"
             ]
         )
+
+    def create(self, car_photo: CarPhoto) -> None:
+        super().create(car_photo.__dict__)
+
+    def get_all(self) -> list[CarPhoto]:
+        result = []
+        rows = super().get_all()
+
+        for i in rows:
+            result.append(CarPhoto(*i))
+
+        return result

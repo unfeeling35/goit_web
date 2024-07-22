@@ -36,3 +36,34 @@ class Table:
         finally:
             cursor.close()
         
+    def create(self, obj_dict: dict):
+        table_columns = ",".join(self.columns.keys())
+        table_questions = ",".join(["?" for _ in self.columns.keys()])
+
+        sql_request = f"INSERT INTO {self.table_name} ({table_columns}) VALUES ({table_questions})"
+
+        logging.debug(sql_request)
+
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute(sql_request, list(obj_dict.values()))
+            self.conn.commit()
+        except sqlite3.Error as e:
+            logging.debug(e)
+        finally:
+            cursor.close()
+
+    def get_all(self) -> list[typing.Iterable[typing.Any]]:
+        rows = None
+
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT * FROM {self.table_name}")
+            rows = cursor.fetchall()
+            logging.debug(f"Got rows: {rows}")
+        except sqlite3.Error as e:
+            logging.debug(e)
+        finally:
+            cursor.close()
+
+        return rows

@@ -18,3 +18,15 @@ class CarTable(table.Table):
             },
             []
         )
+
+    def create(self, car: Car) -> None:
+        super().create(car.__dict__)
+
+    def get_all(self) -> list[Car]:
+        result = []
+        rows = super().get_all()
+
+        for i in rows:
+            result.append(Car(*i))
+
+        return result
