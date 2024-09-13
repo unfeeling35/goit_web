@@ -1,0 +1,13 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+      <div class="form-actions">
+        <button type="submit">Login</button>
+        <a href="{% url 'password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+    </div>
+  </form>
+{% endblock %}

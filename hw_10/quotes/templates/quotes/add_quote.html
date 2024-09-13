@@ -1,0 +1,21 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+<h1>Add new quote</h1>
+<form action="{% url 'add_quote' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Quote</label>
+        {{form.quote}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        {{form.author}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Select Tags</label>
+        {{ form.tags }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
